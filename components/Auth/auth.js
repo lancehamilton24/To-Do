@@ -18,16 +18,4 @@ const loginButton = () => {
   });
 };
 
-const signOutButton = () => {
-  const domString = `
-  <button id="sign-out-button" class="btn btn-primary">sign-out</button>
-  `;
-  $('#sign-out').html(domString);
-  $('#sign-out-button').on('click', () => {
-    firebase.auth().signOut().then(() => {
-    });
-  });
-};
-
-signOutButton();
 export default loginButton;

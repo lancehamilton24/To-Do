@@ -1,0 +1,27 @@
+{ 
+  "tasks": {
+    "task1": {
+        "id": "task1",
+        "task": "Walk the dog",
+        "isCompleted": false,
+        "uid": "oonjE1PQr6ayTCm4xt3F3POebuc2"
+      },
+      "task2": {
+        "id": "task2",
+        "task": "Take out the trash",
+        "isCompleted": false,
+        "uid": "oonjE1PQr6ayTCm4xt3F3POebuc2"
+      },
+      "task3": {
+        "id": "task3",
+        "task": "Aerobics",
+        "isCompleted": false,
+        "uid": "oonjE1PQr6ayTCm4xt3F3POebuc2"
+      },
+      "task4": {
+        "id": "task4",
+        "task": "Nap",
+        "isCompleted": false
+      }
+    }
+}
