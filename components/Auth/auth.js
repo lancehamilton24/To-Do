@@ -11,7 +11,7 @@ const loginButton = () => {
       <img src= "${googleImage}"/>
     </button>
   `;
-  $('#to-do').html(domString);
+  $('#auth').html(domString);
   $('#google-auth').on('click', () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);

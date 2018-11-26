@@ -1,13 +1,9 @@
 import firebase from 'firebase/app';
-import $ from 'jquery';
 import 'bootstrap';
 import './index.scss';
-
 import apiKeys from '../db/apiKeys.json';
-
+import createNavbar from '../components/Navbar/navbar';
 import loginButton from '../components/Auth/auth';
-
-$('#to-do').html('hello world');
 
 const checkLoginStatus = () => {
   firebase.auth().onAuthStateChanged((user) => {
@@ -19,8 +15,9 @@ const checkLoginStatus = () => {
 
 const initializeApp = () => {
   firebase.initializeApp(apiKeys.firebaseKeys);
-  loginButton();
+  createNavbar();
   checkLoginStatus();
+  loginButton();
 };
 
 initializeApp();
