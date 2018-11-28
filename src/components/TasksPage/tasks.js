@@ -13,7 +13,7 @@ const taskStringBuilder = (tasks) => {
 const printTasks = (tasks) => {
   const domString = `
     <div>
-      <div class="task-container">${taskStringBuilder(tasks)}</div>
+      <div>${taskStringBuilder(tasks)}</div>
     </div>
   `;
   $('#tasks').html(domString);

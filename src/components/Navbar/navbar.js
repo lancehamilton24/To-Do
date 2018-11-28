@@ -12,7 +12,7 @@ const navbarEvents = () => {
       });
     } else if (e.target.id === 'navbar-button-tasks') {
       $('#auth').hide();
-      $('#tasks').hide();
+      $('#tasks').show();
     } else {
       $('#auth').show();
       $('#tasks').hide();
