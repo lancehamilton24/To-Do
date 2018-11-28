@@ -2,28 +2,29 @@ import $ from 'jquery';
 import authHelpers from '../../helpers/authHelpers';
 import taskData from '../../helpers/data/taskData';
 
-const taskStringBuilder = (tasks) => {
-  let taskString = '<h3>Tasks:</h3>';
-  tasks.forEach((task) => {
-    taskString += `<h5>${task.task}</h5>`;
-  });
-  return taskString;
-};
+const buildDropdown = (tasksArray) => {
+  let dropdown = `<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Pick a Friend
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">`;
+  if (tasksArray.length) {
+    tasksArray.forEach((task) => {
+      dropdown += `<div class="dropdown-item get-single" data-dropdown-id=${task.id}>${task.task}</div>`;
+    });
+  } else {
+    dropdown += '<div class="dropdown-item">You have no friends.</div>';
+  }
 
-const printTasks = (tasks) => {
-  const domString = `
-    <div>
-      <div>${taskStringBuilder(tasks)}</div>
-    </div>
-  `;
-  $('#tasks').html(domString);
+  dropdown += '</div></div>';
+  $('#tasks').html(dropdown);
 };
 
 const tasksPage = () => {
   const uid = authHelpers.getCurrentUid();
   taskData.getAllTasks(uid)
     .then((tasksArray) => {
-      printTasks(tasksArray);
+      buildDropdown(tasksArray);
     })
     .catch((error) => {
       console.error('error in getting friends', error);

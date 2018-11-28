@@ -5,8 +5,8 @@ const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
 // const getCurrentUid = () => firebase.auth().currentUser.uid;
 
 
-const getAllTasks = () => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/tasks.json`)
+const getAllTasks = uid => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/tasks.json?orderBy="uid"&equalTo="${uid}"`)
     .then((results) => {
       const tasksObject = results.data;
       const tasksArray = [];

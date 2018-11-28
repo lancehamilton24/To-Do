@@ -6,6 +6,8 @@ const navbarEvents = () => {
   $('.nav-link').on('click', (e) => {
     if (e.target.id === 'navbar-button-logout') {
       firebase.auth().signOut().then(() => {
+        $('#auth').show();
+        $('#tasks').hide();
         console.log('you logged out');
       }).catch((err) => {
         console.error('you still logged in', err);
