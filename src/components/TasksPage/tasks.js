@@ -1,39 +1,37 @@
-import axios from 'axios';
-// import firebase from 'firebase/app';
-import apiKeys from '../../../db/apiKeys.json';
+import $ from 'jquery';
+import authHelpers from '../../helpers/authHelpers';
+import taskData from '../../helpers/data/taskData';
 
-const firebaseUrl = apiKeys.firebaseKeys.databaseURL;
-// const getCurrentUid = () => firebase.auth().currentUser.uid;
+const taskStringBuilder = (tasks) => {
+  let taskString = '<h3>Tasks:</h3>';
+  tasks.forEach((task) => {
+    taskString += `<h5>${task.task}</h5>`;
+  });
+  return taskString;
+};
 
+const printTasks = (tasks) => {
+  const domString = `
+    <div>
+      <div class="task-container">${taskStringBuilder(tasks)}</div>
+    </div>
+  `;
+  $('#tasks').html(domString);
+};
 
-const getAllTasks = () => new Promise((resolve, reject) => {
-  axios.get(`${firebaseUrl}/tasks.json`)
-    .then((results) => {
-      const tasksObject = results.data;
-      const tasksArray = [];
-      if (tasksObject !== null) {
-        Object.keys(tasksObject).forEach((taskId) => {
-          tasksObject[taskId].id = taskId;
-          tasksArray.push(tasksObject[taskId]);
-        });
-      }
-      resolve(tasksArray);
-      console.log(tasksArray);
+const tasksPage = () => {
+  const uid = authHelpers.getCurrentUid();
+  taskData.getAllTasks(uid)
+    .then((tasksArray) => {
+      printTasks(tasksArray);
     })
     .catch((error) => {
-      reject(error);
+      console.error('error in getting friends', error);
     });
-});
+};
 
-// const tasksPage = () => {
-//   const uid = getCurrentUid;
-//   Data.getAllTasks(uid)
-//     .then((friendsArray) => {
-//       buildDropdown(friendsArray);
-//     })
-//     .catch((error) => {
-//       console.error('error in getting friends', error);
-//     });
-// };
+const initializeTasksPage = () => {
+  tasksPage();
+};
 
-getAllTasks();
+export default initializeTasksPage;
