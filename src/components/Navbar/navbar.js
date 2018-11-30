@@ -22,15 +22,6 @@ const navbarEvents = () => {
   });
 };
 
-const addTask = () => {
-  $('.new-task').on('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const value = $('.new-task').val();
-      console.log(value);
-    }
-  });
-};
-
 const createNavbar = () => {
   const domString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">To-Do Lists</a>
@@ -53,7 +44,6 @@ const createNavbar = () => {
   </div>`;
   $('#navbar').html(domString);
   navbarEvents();
-  addTask();
 };
 
 
