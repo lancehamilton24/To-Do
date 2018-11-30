@@ -12,14 +12,34 @@ const printTasks = (tasksArray) => {
           <div class="card-body">
           <h2 class="card-title">${task.task}</h2>
           </div>
+            <div class="form-check form-check-inline">
+            <label class="form-check-label" for="inlineCheckbox1">Completed</label>
+            <input class="form-check-input is-completed-checkbox" type="checkbox" id="${task.id}">
+            </div>
         </div>
       </div>
       `;
+      $('#tasks').append(domString);
+      if (task.isCompleted) {
+        $('.is-completed-checkbox').attr('checked', true);
+      }
     });
-    $('#tasks').append(domString);
   } else {
     domString += '<div>You have no tasks.</div>';
   }
+};
+
+const updateIsCompleted = (e) => {
+  const taskId = e.target.id;
+  const isCompleted = e.target.checked;
+  taskData.updatedIsCompleted(taskId, isCompleted)
+    .then(() => {
+
+    })
+    .catch((err) => {
+      console.err('error in updating flag', err);
+    });
+  console.log('you clicked checkbox');
 };
 
 const tasksPage = () => {
@@ -43,8 +63,14 @@ const addTask = () => {
   });
 };
 
+const bindEvents = () => {
+  $('body').on('change', '.is-completed-checkbox', updateIsCompleted);
+};
+
+
 const initializeTasksPage = () => {
   tasksPage();
+  bindEvents();
   addTask();
 };
 

@@ -24,4 +24,9 @@ const getAllTasks = uid => new Promise((resolve, reject) => {
     });
 });
 
-export default { getAllTasks };
+const updatedIsCompleted = (taskId, isCompleted) => axios.patch(`${firebaseUrl}/tasks/${taskId}.json`, { isCompleted });
+
+export default {
+  getAllTasks,
+  updatedIsCompleted,
+};
