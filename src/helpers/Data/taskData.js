@@ -24,9 +24,22 @@ const getAllTasks = uid => new Promise((resolve, reject) => {
     });
 });
 
+const getSingleTask = taskId => new Promise((resolve, reject) => {
+  axios.get(`${firebaseUrl}/tasks/${taskId}.json`)
+    .then((result) => {
+      const singleTask = result.data;
+      singleTask.id = taskId;
+      resolve(singleTask);
+    })
+    .catch((error) => {
+      reject(error);
+    });
+});
+
 const updatedIsCompleted = (taskId, isCompleted) => axios.patch(`${firebaseUrl}/tasks/${taskId}.json`, { isCompleted });
 
 export default {
   getAllTasks,
+  getSingleTask,
   updatedIsCompleted,
 };
