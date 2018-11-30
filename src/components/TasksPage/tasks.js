@@ -2,21 +2,24 @@ import $ from 'jquery';
 import authHelpers from '../../helpers/authHelpers';
 import taskData from '../../helpers/data/taskData';
 
-const taskStringBuilder = (tasks) => {
-  let taskString = '<h3>Tasks:</h3>';
-  tasks.forEach((task) => {
-    taskString += `<h5>${task.task}</h5>`;
-  });
-  return taskString;
-};
-
-const printTasks = (tasks) => {
-  const domString = `
-    <div>
-      <div>${taskStringBuilder(tasks)}</div>
-    </div>
-  `;
-  $('#tasks').html(domString);
+const printTasks = (tasksArray) => {
+  let domString = '';
+  if (tasksArray.length) {
+    tasksArray.forEach((task) => {
+      domString += `
+      <div class="col-md movie-card" task-card-id='${task.id}'>
+        <div class="card">
+          <div class="card-body">
+          <h2 class="card-title">${task.task}</h2>
+          </div>
+        </div>
+      </div>
+      `;
+    });
+    $('#tasks').append(domString);
+  } else {
+    domString += '<div>You have no tasks.</div>';
+  }
 };
 
 const tasksPage = () => {
@@ -30,8 +33,19 @@ const tasksPage = () => {
     });
 };
 
+const addTask = () => {
+  $('.new-task').on('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const value = $('.new-task').val();
+      $('#tasks').append(value);
+    }
+  });
+};
+
 const initializeTasksPage = () => {
   tasksPage();
+  addTask();
 };
 
 export default initializeTasksPage;
