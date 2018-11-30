@@ -7,15 +7,13 @@ const printTasks = (tasksArray) => {
   if (tasksArray.length) {
     tasksArray.forEach((task) => {
       domString += `
-      <div class="col-md movie-card" task-card-id="${task.id}">
+      <div class="col-md task-card">
         <div class="card">
-          <div class="card-body">
           <h2 class="card-title get-single" id="${task.id}">${task.task}</h2>
-          </div>
         </div>
       </div>
       `;
-      $('#tasks').append(domString);
+      $('#tasks').html(domString);
     });
   } else {
     domString += '<div>You have no tasks.</div>';
