@@ -76,26 +76,14 @@ const tasksPage = () => {
     });
 };
 
-const addTask = () => {
-  $('.new-task').on('keypress', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const value = $('.new-task').val();
-      $('#tasks').append(value);
-    }
-  });
-};
-
 const bindEvents = () => {
   $('body').on('change', '.is-completed-checkbox', updateIsCompleted);
   $('body').on('click', '.get-single', getSingleTask);
 };
 
-
 const initializeTasksPage = () => {
   tasksPage();
   bindEvents();
-  addTask();
 };
 
 export default initializeTasksPage;
