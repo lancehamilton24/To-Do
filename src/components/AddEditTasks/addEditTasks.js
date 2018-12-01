@@ -45,14 +45,6 @@ const addTask = () => {
 };
 
 
-// $('#new-task').on('keypress', (e) => {
-//   if (e.key === 'Enter') {
-//     e.preventDefault();
-//     const value = $('.new-task').val();
-//     $('#tasks').append(value);
-//     initializeTasksPage();
-//   }
-
 // console.log(addTask);
 $('body').on('click', '#add-task', addTask);
 

@@ -65,6 +65,7 @@ const updateIsCompleted = (e) => {
   console.log('you clicked checkbox');
 };
 
+
 const tasksPage = () => {
   const uid = authHelpers.getCurrentUid();
   taskData.getAllTasks(uid)
