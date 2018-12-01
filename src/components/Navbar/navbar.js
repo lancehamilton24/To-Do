@@ -25,7 +25,6 @@ const navbarEvents = () => {
 const createNavbar = () => {
   const domString = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">To-Do Lists</a>
-  <input type="text" placeholder="Add Tasks" class="mx-5 my-2 nav-item form-control new-task" id="message-input">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

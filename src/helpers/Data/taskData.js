@@ -36,10 +36,13 @@ const getSingleTask = taskId => new Promise((resolve, reject) => {
     });
 });
 
+const addTask = tasksObject => axios.post(`${firebaseUrl}/tasks.json`, JSON.stringify(tasksObject));
+
 const updatedIsCompleted = (taskId, isCompleted) => axios.patch(`${firebaseUrl}/tasks/${taskId}.json`, { isCompleted });
 
 export default {
   getAllTasks,
   getSingleTask,
+  addTask,
   updatedIsCompleted,
 };
